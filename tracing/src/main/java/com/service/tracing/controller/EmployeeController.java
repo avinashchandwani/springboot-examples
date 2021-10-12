@@ -47,8 +47,8 @@ public class EmployeeController {
     public void inactivateEmployee(@PathVariable(name = "id") long employeeId) {
         try {
             employeeService.deleteEmployee(employeeId);
-        } catch (ServiceException ex) {
-            throw new ServiceException(ex.getResponseCode(), ex.getMessage());
+        } catch (Exception ex) {
+            TracingExceptionUtil.throwAppropriateException(ex);
         }
     }
 }
