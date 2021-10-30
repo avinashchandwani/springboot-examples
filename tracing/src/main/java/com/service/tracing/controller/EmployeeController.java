@@ -5,6 +5,7 @@ import com.service.tracing.service.EmployeeService;
 import com.service.tracing.util.ExceptionCode;
 import com.service.tracing.util.ServiceException;
 import com.service.tracing.util.TracingExceptionUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/employees")
+@Tag(name = "employees", description = "the employees API with documentation annotations")
 public class EmployeeController {
 
     @Autowired
