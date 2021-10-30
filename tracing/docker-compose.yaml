@@ -1,0 +1,17 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+services:
+  mycassandra:
+    image: cassandra
+    container_name: mycassandra
+    ports:
+      - "9042:9042"
+
+  tracing-service:
+    image: tracing-service
+    restart: on-failure
+    depends_on:
+      - mycassandra
+    ports:
+      - 9100:9100
+      - 9101:9101

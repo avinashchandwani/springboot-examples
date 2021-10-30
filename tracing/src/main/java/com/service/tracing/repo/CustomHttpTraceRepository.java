@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Component
@@ -38,10 +39,11 @@ public class CustomHttpTraceRepository implements HttpTraceRepository {
     @Override
     public void add(HttpTrace trace) {
         if (shouldTraceMethod(trace.getRequest().getMethod())) {
+            Random random = new Random();
             ActivityLog activityLog = new ActivityLog(trace.getResponse().getStatus(),
                     trace.getRequest().getUri().getPath(),
                     trace.getTimeTaken(),
-                    trace.getTimestamp().getEpochSecond(), trace.getRequest().getMethod(), trace.getRequest().getRemoteAddress());
+                    trace.getTimestamp().getEpochSecond(), trace.getRequest().getMethod(), trace.getRequest().getRemoteAddress(), random.nextInt(10));
             lastTrace.set(trace);
             activityLogRepository.save(activityLog);
         }

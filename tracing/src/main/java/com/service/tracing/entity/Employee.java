@@ -30,4 +30,8 @@ public class Employee {
     @Getter
     @Setter
     private char gender;
+
+    @Getter
+    @Setter
+    private int organizationId;
 }
